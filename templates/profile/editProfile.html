@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %} Edit Profile {% endblock title %}
+
+{% block logactive %} disabled {% endblock logactive %}
+
+{% block activeProfile %} active {% endblock activeProfile %}
+
+{% block body %}
+<style>
+    body {
+    background: rgb(99, 39, 120)
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 50%;
+    height: 50%;
+}
+.profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+}
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+
+
+
+
+</style>
+
+<form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <div class="profile-img">
+                        <img alt=""
+                             src="{{request.user.userdetail.image.url}}"/>
+
+                    </div>
+                    <span
+                            class="font-weight-bold">{{ request.user.username }}</span><span
+                        class="text-black-50">{{ request.user.email }}</span><span> </span>
+                </div>
+                <div class="mt-5 text-center">
+                    <a class="btn btn-primary" href="changePassword">Change Password</a>
+                </div>
+
+
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">First Name</label>
+                            {% render_field u_form.first_name class='form-control' %}
+                        </div>
+                        <div class="col-md-6"><label class="labels">Last Name</label>
+                            {% render_field u_form.last_name class='form-control' %}
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Date of Birth</label>
+                            {% render_field p_form.dob class='form-control' %}
+                        </div>
+                        <div class="col-md-12"><label class="labels">Address</label>
+                            {% render_field p_form.address class='form-control' %}
+                        </div>
+                        <div class="col-md-12"><label class="labels">PhoneNumber</label>
+                            {% render_field p_form.phone class='form-control' %}
+                        </div>
+                        <div class="col-md-12"><label class="labels">Father' Name</label>
+                            {% render_field p_form.father class='form-control' %}
+                        </div>
+                        <div class="col-md-12"><label class="labels">Mother's Name</label>
+                            {% render_field p_form.mother class='form-control' %}
+                        </div>
+
+                        <div class="col-md-12"><br><br>
+                            <center><b><label>Upload New Photo</label></b></center>
+                            <hr>
+
+
+                            {% render_field p_form.image %}
+
+                            <!--                            <div class="input-group mb-3">-->
+                            <!--                                <div class="custom-file">-->
+                            <!--                                    {% render_field p_form.image class="custom-file-input" id="inputGroupFile03" %}-->
+                            <!--                                    -->
+                            <!--                                    <label class="custom-file-label" for="inputGroupFile03">Choose file</label>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+
+
+                </div>
+            </div>
+
+            <div class="col-md-4 border-right">
+                <div class="p-3 py-5">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right"><b>+2</b></h4>
+
+                    </div>
+
+                    <div class="col-md-15"><label class="labels">Institute Name</label>
+                        {% render_field p_form.plus2name class='form-control' %}
+                    </div>
+                    <div class="col-md-15"><label class="labels">Institute Board</label>
+                        {% render_field p_form.plus2board class='form-control' %}
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Year</label>
+                            {% render_field p_form.plus2year class='form-control' %}
+                        </div>
+                        <div class="col-md-6"><label class="labels">Percentage</label>
+                            {% render_field p_form.plus2percent class='form-control' %}
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="p-3 ">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right"><b>SLC</b></h4>
+                    </div>
+
+                    <div class="col-md-15"><label class="labels">Institute Name</label>
+                        {% render_field p_form.slcname class='form-control' %}
+                    </div>
+                    <div class="col-md-15"><label class="labels">Institute Board</label>
+                        {% render_field p_form.slcboard class='form-control' %}
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Year</label>
+                            {% render_field p_form.slcyear class='form-control' %}
+                        </div>
+                        <div class="col-md-6"><label class="labels">Percentage</label>
+                            {% render_field p_form.slcpercent class='form-control' %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <hr>
+
+        <div class="mt-5 text-center">
+            <button class="btn btn-primary" type="submit">Save Profile</button>
+        </div>
+        <br>
+        <br>
+
+
+    </div>
+</form>
+
+{% endblock body %}

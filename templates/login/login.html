@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %} Login {% endblock title %}
+
+{% block position %} fixed {% endblock position %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<div class="container my-5">
+    <center>
+    <div class="jumbotron">
+        <h1 class="display-4">Hello, {{user.username}}!</h1>
+
+        <hr class="my-4">
+        <p>You are already logged in.</p>
+
+    </div>
+        </center>
+</div>
+
+{% else %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container" style="max-width: 400px;">
+        <h1 class="display-4">Login</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class='error'>{{form.errors}}</div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username</label>
+                <input aria-describedby="emailHelp" class="form-control" id="loginusername" name='loginusername'
+                       required type="text">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input class="form-control" id="loginpass" name='loginpass' required type="password">
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <br><br>
+            <label>Do not have account: </label>
+            <a href="/home/register" role="button">Register</a>
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endblock body%}

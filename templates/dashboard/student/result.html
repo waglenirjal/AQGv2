@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block nav %}  {% endblock nav %}
+
+{% block activeDash %} active {% endblock activeDash %}
+
+{% block logactive %} disabled {% endblock logactive %}
+
+{% block position %} relative {% endblock position %}
+
+{% block activeDashbar %} {% endblock activeDashbar %}
+
+{% block body %}
+
+<div class="container my-5">
+    <div class="jumbotron">
+        <center>
+            <h1 class="display-4">!! Result Time !!</h1>
+            <p class="lead">Your Score is shown here.</p>
+            <hr class="my-4">
+            <p>Your Score Is: <h4>{{ score }} out of {{ by }}</h4></p>
+            <br>
+            <p><b>Answer: </b><br>{{ ans }}</p>
+            <p><b>Your Answer: </b><br>{{ lst }}</p>
+
+            <br>
+
+            <p>That Is: <h4>{{ percent }}</h4></p>
+            <br>
+            <p>Time Is: <h4>{{ time }}</h4></p>
+            <br>
+            <a class="btn btn-danger btn-lg" href="/home/dashboard" role="button">Begin Again</a>
+        </center>
+
+
+
+    </div>
+</div>
+
+{% endblock body %}
+

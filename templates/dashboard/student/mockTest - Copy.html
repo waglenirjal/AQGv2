@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block nav %}  {% endblock nav %}
+
+{% block activeDash %} active {% endblock activeDash %}
+
+{% block logactive %} disabled {% endblock logactive %}
+
+{% block position %} relative {% endblock position %}
+
+{% block activeDashbar %} {% endblock activeDashbar %}
+
+{% block body %}
+
+
+<style>
+    .jumbotronMine {
+    padding: 2rem 2rem;
+    margin-bottom: 2rem;
+    background-color: #D7D7D7;
+    border-radius: 1rem;
+}
+
+.jumbotronBg {
+    padding: 2rem 2rem;
+    margin-bottom: 2rem;
+    background-color: #BFBDBC;
+    border-radius: 1rem;
+}
+
+.display-5 {
+    -webkit-text-stroke-width: thin;
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-55 {
+    -webkit-text-stroke-width: thin;
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-6 {
+    -webkit-text-stroke-width: thin;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+
+
+
+</style>
+
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <img class="rounded" height="30px" src="{{request.user.userdetail.image.url}}" width="30px">
+    &nbsp;&nbsp;
+    <b>{{request.user}}</b>
+
+    <ul class="nav navbar-nav ml-auto">
+        <h4 id="op"><b>Time:</b> 02:00:00</h4>
+    </ul>
+
+    <ul class="nav navbar-nav ml-auto">
+        <a class="btn btn-danger" href="/home/dashboard" type="submit">End Test</a>
+    </ul>
+
+</nav>
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary" data-target="#exampleModal" data-toggle="modal" type="button">
+    Launch demo modal
+</button>
+
+<div class="modal hide fade" id="myModal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
+</div>
+
+
+<div class="container my-5">
+    {% for sno, data in all %}
+    <div class="jumbotronMine">
+
+        <h1 class="display-6">{{ sno }}. {{ data.Question }}</h1>
+        <p class="lead"></p>
+        <hr class="my-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="container">
+                        <p class="lead">
+                        <div class="custom-control custom-checkbox">
+                            <input class="form-check-input" id="exampleRadios1" name="answer"
+                                   type="radio" value="{{ data.optA }}">
+                            <label class="form-check-label" for="exampleRadios1"><h1 class="display-6">
+                                a. {{ data.optA }}</h1>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="container">
+                        <p class="lead">
+                        <div class="custom-control custom-checkbox">
+                            <input class="form-check-input" id="exampleRadios2" name="answer"
+                                   type="radio" value="{{ data.optB }}">
+                            <label class="form-check-label" for="exampleRadios2"><h1 class="display-6">
+                                b. {{ data.optB }}</h1>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="container">
+                        <p class="lead">
+                        <div class="custom-control custom-checkbox">
+                            <input class="form-check-input" id="exampleRadios3" name="answer"
+                                   type="radio" value="{{ data.optC }}">
+                            <label class="form-check-label" for="exampleRadios3"><h1 class="display-6">
+                                c. {{ data.optC }}</h1>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="container">
+                        <p class="lead">
+
+                        <div class="custom-control custom-checkbox">
+                            <input class="form-check-input" id="exampleRadios4" name="answer"
+                                   type="radio" value="{{ data.optD }}">
+                            <label class="form-check-label" for="exampleRadios4"><h1 class="display-6">
+                                d. {{ data.optD }}</h1>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+
+
+    </div>
+    {% endfor %}
+    <center>
+        <button class="btn btn-success btn-lg btn-block" type="submit">Submit</button>
+    </center>
+</div>
+
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });
+
+    var ID = 0;
+    var seconds = 0;
+    function printMsg(){
+        document.getElementById('op').innerHTML = seconds + 'seconds';
+        seconds++;
+    }
+    function start(){
+        ID = window.setInterval(printMsg, 1000);
+    }
+    function stop(){
+        window.clearInterval(ID);
+    }
+
+
+</script>
+{% endblock body %}

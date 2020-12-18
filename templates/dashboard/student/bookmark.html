@@ -1,0 +1,54 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block position %} fixed {% endblock position %}
+
+{% block sub_body %}
+
+{% load static %}
+<script src="{% static 'Bookmark.js' %}"></script>
+
+
+<div class="container my-5">
+    <div class="list-group">
+        <button aria-current="true" class="list-group-item list-group-item-action active" type="button">
+            You have Bookmarked these :
+        </button>
+
+        <div class="accordion" id="accordionExample">
+
+            {% for i in booked %}
+
+            <div class="card" id="lol">
+                <div class="card-header " id="heading{{ i.sno }}" >
+                    <h2 class="mb-0">
+                        <button aria-controls="collapse{{ i.sno }}" aria-expanded="true"
+                                class="btn btn-link btn-block text-left " data-target="#collapse{{ i.sno }}"
+                                data-toggle="collapse"
+                                type="button" >
+                            {{ i.Question }}
+
+                        </button>
+
+                    </h2>
+                </div>
+
+
+                <div aria-labelledby="heading{{ i.sno }}" class="collapse"
+                     data-parent="#accordionExample"
+                     id="collapse{{ i.sno }}">
+                    <div class="card-body">
+                        Ans : {{ i.ans }}
+                        <button type="button" class="btn btn-danger" style="float: right;" onclick="delbook({{ i.IntQuesID }})">Remove</button>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock sub_body %}

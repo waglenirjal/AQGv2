@@ -1,0 +1,73 @@
+{% extends 'dashboard/t_dashboard.html' %}
+
+{% block sub_body %}
+<style>
+    .table td,
+    .table th {
+        padding: .4rem;
+        vertical-align: 0;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .list-group-items {
+         position: relative;
+    display: block;
+    padding: .4rem 1.25rem;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+        }
+
+
+</style>
+
+<div class="row">
+    <a href="/teacher/dashboard/selsubReview" role="button">
+
+        <svg class="feather feather-arrow-left-circle" fill="none" height="30" stroke="currentColor"
+             stroke-linecap="round"
+             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="40"
+             xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 8 8 12 12 16"></polyline>
+            <line x1="16" x2="8" y1="12" y2="12"></line>
+        </svg>
+
+    </a>
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+
+
+    <h3>Review Your English Questions</h3>
+
+
+</div>
+<br>
+
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Questions</th>
+
+        <th scope="col">By</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for question in all %}
+    <tr>
+        <th scope="row">{{ question.sno }}</th>
+        <td><a class="list-group-items list-group-item-action" href="/teacher/dashboard/editSelected/{{ question.intQuesID.pk }}">{{ question.Question }}</a>
+        </td>
+        <td>{{ question.teacherName }}</td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+
+{% endblock sub_body %}

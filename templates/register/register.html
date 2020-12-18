@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %} Register {% endblock title %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<div class="container my-5">
+    <center>
+    <div class="jumbotron">
+        <h1 class="display-4">Hello, {{user.username}}!</h1>
+
+        <hr class="my-4">
+        <p>You are already logged in.</p>
+
+    </div>
+        </center>
+</div>
+
+{% else %}
+
+<div class="jumbotron jumbotron-fluid" >
+    <div class="container" style="max-width: 550px;">
+        <h1 class="display-4" align="center">Register</h1>
+        <div class="modal-body">
+
+            <form method='post'>
+                {% csrf_token %}
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button aria-controls="collapseOne" aria-expanded="true"
+                                        class="btn btn-link btn-block text-left" data-target="#collapseOne"
+                                        data-toggle="collapse"
+                                        type="button">
+                                    1. Credentials Information
+
+                                </button>
+                            </h2>
+                        </div>
+
+
+                        <div aria-labelledby="headingOne" class="collapse show"
+                             data-parent="#accordionExample"
+                             id="collapseOne">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Role</label>
+                                    {% render_field form.role class='form-control' select='Student' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Username</label>
+                                    {% render_field form.username class='form-control' placeholder='Username' %}
+
+                                </div>
+                                <div class='error'>{{form.errors.username}}</div>
+
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+
+                                    {% render_field form.email class='form-control' placeholder='Email' %}
+
+                                    <small class="form-text text-muted" id="emailHelp">We'll never share
+                                        your email with anyone
+                                        else.</small>
+                                </div>
+                                <div class='error'>{{form.errors.email}}</div>
+
+                                <div class="form-group">
+                                    <label for="pass1">Password</label>
+
+                                    {% render_field form.password1 class='form-control' placeholder='Password' %}
+                                </div>
+                                <div class='error'>{{form.errors.password1}}</div>
+
+                                <div class="form-group">
+                                    <label for="pass2">Confirm Password</label>
+
+                                    {% render_field form.password2 class='form-control' placeholder='Confirm' %}
+                                </div>
+                                <div class='error'>{{form.errors.password2}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button aria-controls="collapseTwo" aria-expanded="false"
+                                        class="btn btn-link btn-block text-left collapsed"
+                                        data-target="#collapseTwo" data-toggle="collapse"
+                                        type="button">
+                                    2. Personal Informations
+                                </button>
+                            </h2>
+                        </div>
+
+
+                        <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionExample"
+                             id="collapseTwo">
+                            <div class="card-body">
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">First Name</label>
+
+                                    {% render_field form.first_name class='form-control' placeholder='First Name' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Last Name</label>
+                                    {% render_field form.last_name class='form-control' placeholder='Last Name' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Date Of Birth</label>
+                                    {% render_field form.date class='form-control' placeholder='Birth of Date' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Address</label>
+                                    {% render_field form.address class='form-control' placeholder='Address' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Phone Number:</label>
+                                    {% render_field form.phone class='form-control' placeholder='Phone Number' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Father's Name</label>
+                                    {% render_field form.father class='form-control' placeholder='Father Name' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Mother's Name</label>
+                                    {% render_field form.mother class='form-control' placeholder='Mother Name' %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                                <button aria-controls="collapseThree" aria-expanded="false"
+                                        class="btn btn-link btn-block text-left collapsed"
+                                        data-target="#collapseThree"
+                                        data-toggle="collapse" type="button">
+                                    3. Academic Informations
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div aria-labelledby="headingThree" class="collapse" data-parent="#accordionExample"
+                             id="collapseThree">
+                            <div class="card-body">
+
+                                <h3 class="form-group">+2</h3>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Institute Name:</label>
+                                    {% render_field form.plus2name class='form-control' placeholder='plus2name' %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Board:</label>
+                                    {% render_field form.plus2board class='form-control' placeholder='plus2board' %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Year:</label>
+                                    {% render_field form.plus2year class='form-control' placeholder='plus2year' %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Percentage:</label>
+                                    {% render_field form.plus2percent class='form-control' placeholder='plus2percent' %}
+                                </div>
+
+                                <h3 class="form-group">SLC</h3>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Institute Name:</label>
+                                    {% render_field form.slcname class='form-control' placeholder='slcname' %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Board:</label>
+                                    {% render_field form.slcboard class='form-control' placeholder='slcboard' %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Year:</label>
+                                    {% render_field form.slcyear class='form-control' placeholder='slcyear' %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Percentage:</label>
+                                    {% render_field form.slcpercent class='form-control' placeholder='slcpercent' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+{% endif %}
+{% endblock body %}

@@ -1,0 +1,1 @@
+web: gunicorn aqg.wsgi --log-file -

@@ -1,0 +1,51 @@
+{% extends 'base_teacher.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %} Login {% endblock title %}
+
+{% block activeProfile %} active {% endblock activeProfile %}
+
+{% block position %} fixed {% endblock position %}
+
+{% block body %}
+
+<div class="container" style="max-width: 400px;">
+    <h1 class="display-4">Change Password</h1>
+    <h1 class="display-4" style="font-size: 1.5rem;" align="right">Teacher Panel</h1>
+    <hr>
+    <form method="POST">
+        {% csrf_token %}
+        <div class='error'>{{form.errors}}</div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Old Password</label>
+            {% render_field form.old_password class='form-control' placeholder='Old Password' %}
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">New Password</label>
+            {% render_field form.new_password1 class='form-control' placeholder='New Password' %}
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Confirm Password</label>
+            {% render_field form.new_password2 class='form-control' placeholder='Confirm Password' %}
+        </div>
+
+<a href="/teacher/profile/edit/">
+        <svg class="feather feather-arrow-left-circle" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+             xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 8 8 12 12 16"></polyline>
+            <line x1="16" x2="8" y1="12" y2="12"></line>
+        </svg></a>
+
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+        <button class="btn btn-primary" type="submit">Change It</button>
+    </form>
+</div>
+
+
+{% endblock body%}

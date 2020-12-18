@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Automatic Question Generator {% endblock title %}
+
+{% block active %} active {% endblock active %}
+
+{% block body %}
+
+{% if request.user.groups.all.0.name == 'Student' %}
+
+{% elif request.user.groups.all.0.name == 'Student' %}
+
+{% else %}
+
+{% endif %}
+
+{% endblock body %}

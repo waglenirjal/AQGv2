@@ -1,0 +1,80 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block position %} fixed {% endblock position %}
+
+{% block sub_body %}
+
+<div class="jumbotronMine">
+    <h1 class="display-6">You are Level : {{ request.user.userdetail.glevel }}</h1>
+</div>
+
+<div class="jumbotronMine">
+    <h1 class="display-5">Level Up and get Certificate.</h1>
+    <hr class="my-4">
+    <p class="lead">Progress and get the certificate.</p>
+    <a class="btn btn-primary btn-lg" href="welcomeCF" role="button" style="float:right">Begin</a>
+    <br>
+    <br>
+</div>
+
+<div class="jumbotronMine">
+    <h1 class="display-4">Overall Score!</h1>
+    <hr class="my-4">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <p class="lead">Attempts:</p>
+                <h1 class="display-6">10</h1>
+            </div>
+            <div class="col-sm">
+                <p class="lead">Correct:</p>
+                <h1 class="display-6">3</h1>
+            </div>
+            <div class="col-sm">
+                <p class="lead">Incorrect:</p>
+                <h1 class="display-6">7</h1>
+            </div>
+        </div>
+        <hr class="my-6">
+        <center>
+            <div class="row">
+                <div class="col-sm">
+                    <p class="lead">Percentage:</p>
+                    <h1 class="display-6">23%</h1>
+                </div>
+            </div>
+        </center>
+    </div>
+
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mock Test</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a class="btn btn-primary" href="mockinstruct">Mock Test</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Question Bank</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a class="btn btn-primary" href="qbank">QBank</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<br>
+<br>
+<br>
+{% endblock sub_body %}

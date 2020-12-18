@@ -1,0 +1,189 @@
+{% extends 'base_teacher.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %} Register {% endblock title %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<div class="container my-5">
+    <center>
+        <div class="jumbotron">
+            <h1 class="display-4">Hello, {{user.username}}!</h1>
+
+            <hr class="my-4">
+            <p>You are already logged in.</p>
+
+        </div>
+    </center>
+</div>
+
+{% else %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container" style="max-width: 550px;">
+
+
+        <h1 align="center" class="display-4">Register</h1>
+        <h1 align="center" class="display-4" style="font-size: 1.5rem;">as <b>Teacher</b></h1>
+        <div align="left">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/teacher/login">
+                <svg class="feather feather-arrow-left-circle" fill="none" height="24" stroke="currentColor"
+                     stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 8 8 12 12 16"></polyline>
+                    <line x1="16" x2="8" y1="12" y2="12"></line>
+                </svg>
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+            <a href="/teacher">
+                <svg class="feather feather-home" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </a>
+
+
+        </div>
+        <div class="modal-body">
+
+
+            <form method='post'>
+                {% csrf_token %}
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button aria-controls="collapseOne" aria-expanded="true"
+                                        class="btn btn-link btn-block text-left" data-target="#collapseOne"
+                                        data-toggle="collapse"
+                                        type="button">
+                                    1. Credentials Information
+
+                                </button>
+                            </h2>
+                        </div>
+
+
+                        <div aria-labelledby="headingOne" class="collapse show"
+                             data-parent="#accordionExample"
+                             id="collapseOne">
+                            <div class="card-body">
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Role</label>
+                                    {% render_field form.role class='form-control' placeholder='Username' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Username</label>
+                                    {% render_field form.username class='form-control' placeholder='Username' %}
+
+                                </div>
+                                <div class='error'>{{form.errors.username}}</div>
+
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+
+                                    {% render_field form.email class='form-control' placeholder='Email' %}
+
+                                    <small class="form-text text-muted" id="emailHelp">We'll never share
+                                        your email with anyone
+                                        else.</small>
+                                </div>
+                                <div class='error'>{{form.errors.email}}</div>
+
+                                <div class="form-group">
+                                    <label for="pass1">Password</label>
+
+                                    {% render_field form.password1 class='form-control' placeholder='Password' %}
+                                </div>
+                                <div class='error'>{{form.errors.password1}}</div>
+
+                                <div class="form-group">
+                                    <label for="pass2">Confirm Password</label>
+
+                                    {% render_field form.password2 class='form-control' placeholder='Confirm' %}
+                                </div>
+                                <div class='error'>{{form.errors.password2}}</div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button aria-controls="collapseTwo" aria-expanded="false"
+                                        class="btn btn-link btn-block text-left collapsed"
+                                        data-target="#collapseTwo" data-toggle="collapse"
+                                        type="button">
+                                    2. Personal Informations
+                                </button>
+                            </h2>
+                        </div>
+
+
+                        <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionExample"
+                             id="collapseTwo">
+                            <div class="card-body">
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">First Name</label>
+
+                                    {% render_field form.first_name class='form-control' placeholder='First Name' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Last Name</label>
+                                    {% render_field form.last_name class='form-control' placeholder='Last Name' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Date Of Birth</label>
+                                    {% render_field form.date class='form-control' placeholder='Birth of Date' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Address</label>
+                                    {% render_field form.address class='form-control' placeholder='Address' %}
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Phone Number:</label>
+                                    {% render_field form.phone class='form-control' placeholder='Phone Number' %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+
+
+        </div>
+
+
+    </div>
+</div>
+{% endif %}
+{% endblock body %}

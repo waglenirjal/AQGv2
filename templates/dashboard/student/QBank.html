@@ -1,0 +1,123 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block sub_body %}
+
+<div class="jumbotronBg">
+    <h1 class="display-4">QBank</h1>
+    <br>
+
+    <div class="jumbotronMine">
+        <form method="post">
+        {% csrf_token %}
+        <h1 class="display-55">1. Select Subject</h1>
+        <div class="container">
+            <p class="lead">
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" id="physicsSel" name="physicsSel" type="checkbox" checked>
+                <label class="custom-control-label" for="physicsSel"><h1 class="display-6">Physics</h1>
+                </label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" id="chemistrySel" name="chemistrySel" type="checkbox" checked>
+                <label class="custom-control-label" for="chemistrySel"><h1 class="display-6">Chemistry</h1>
+                </label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" id="mathSel" name="mathSel" type="checkbox" checked>
+                <label class="custom-control-label" for="mathSel"><h1 class="display-6">Math</h1>
+                </label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" id="englishSel" name="englishSel" type="checkbox" checked>
+                <label class="custom-control-label" for="englishSel"><h1 class="display-6">English</h1>
+                </label>
+            </div>
+            </p>
+        </div>
+
+        <hr class="my-4">
+
+        <h1 class="display-55">2. Mark</h1>
+        <div class="container">
+            <p class="lead">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="markSel">Options</label>
+                </div>
+                <select class="custom-select" id="markSel" name="markSel">
+                    <option value="All" selected>All</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                </select>
+            </div>
+            </p>
+        </div>
+
+        <hr class="my-4">
+
+        <h1 class="display-55">3. Level</h1>
+        <div class="container">
+            <p class="lead">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="levelSel">Options</label>
+                </div>
+                <select class="custom-select" id="levelSel" name="levelSel">
+                    <option value="All" selected>All</option>
+                    <option value="1">Easy</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Hard</option>
+                </select>
+            </div>
+            </p>
+        </div>
+
+        <hr class="my-4">
+
+        <h1 class="display-55">4. No. of Questions</h1>
+        <div class="container">
+            <p class="lead">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="numQues">Options</label>
+                </div>
+                <select class="custom-select" id="numQues" name="numQues">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option selected value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            </p>
+        </div>
+
+        <hr class="my-4">
+
+        <h1 class="display-55">5. Select Exam Type</h1>
+        <div class="container">
+            <p class="lead">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+
+                    <option selected value="1">Regular Mode</option>
+                    <option value="2">Exam Mode</option>
+                </select>
+            </div>
+            </p>
+        </div>
+
+
+        <hr class="my-4">
+        <br>
+        <a class="btn btn-secondary btn-lg" href="qbank" role="button">Reset</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-success btn-lg" type="submit">Start Test</button>
+    </form>
+    </div>
+
+</div>
+
+{% endblock sub_body %}

@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block activeDash %} active {% endblock activeDash %}
+
+{% block logactive %} disabled {% endblock logactive %}
+
+{% block position %} fixed {% endblock position %}
+
+
+{% block body %}
+
+{% load static %}
+<script src="{% static 'qBankScript.js' %}"></script>
+<script src="{% static 'Bookmark.js' %}"></script>
+
+<style>
+    .jumbotronMine {
+    padding: 2rem 2rem;
+    margin-bottom: 2rem;
+    background-color: #D7D7D7;
+    border-radius: 1rem;
+}
+
+.jumbotronBg {
+    padding: 2rem 2rem;
+    margin-bottom: 2rem;
+    background-color: #BFBDBC;
+    border-radius: 1rem;
+}
+
+.display-5 {
+    -webkit-text-stroke-width: thin;
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-55 {
+    -webkit-text-stroke-width: thin;
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-6 {
+    -webkit-text-stroke-width: thin;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+
+
+
+
+
+
+
+</style>
+
+<div class="container my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a href="/home/dashboard/qbank">
+                    <h4><i class="fas fa-times-circle"></i></h4>
+                </a>
+            </div>
+
+            <div align="right" class="col">
+                <h5><b>Time:</b> 1:30</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5>{{ mark }} Mark and {{ level }} Level</h5>
+            </div>
+            <div align="right" class="col">
+                <h5>
+
+                    {{ dataz.number }}/{{ noq }} &nbsp;
+
+                    <button onclick="bookQues()" class="fas fa-bookmark" id="bookmark_button" style="padding: 0;border: none;background: none; color:grey"></button>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="jumbotronMine">
+        {% for data in dataz %}
+        <input name="intqno_tag" value="{{ data.intQuesID.pk }}" hidden>
+        <h1 class="display-6">{{ dataz.number }}. {{ data.Question }}</h1>
+        <p class="lead"></p>
+        <hr class="my-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="container">
+                        <p class="lead">
+                        <div class="custom-control custom-checkbox">
+                            <input class="form-check-input" id="ans1+{{ dataz.number }}" name="ans{{ dataz.number }}"
+                                   type="radio" value="{{ data.optA }}">
+                            <label class="form-check-label" for="ans1+{{ dataz.number }}"><h1 class="display-6">
+                                a. {{ data.optA }}</h1>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="container">
+                        <p class="lead">
+                        <div class="custom-control custom-checkbox">
+                            <input class="form-check-input" id="ans2+{{ dataz.number }}" name="ans{{ dataz.number }}"
+                                   type="radio" value="{{ data.optB }}">
+                            <label class="form-check-label" for="ans2+{{ dataz.number }}"><h1 class="display-6">b.
+                                {{ data.optB }}</h1>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="container">
+                        <p class="lead">
+                        <div class="custom-control custom-checkbox">
+                            <input class="form-check-input" id="ans3+{{ dataz.number }}" name="ans{{ dataz.number }}"
+                                   type="radio" value="{{ data.optC }}">
+                            <label class="form-check-label" for="ans3+{{ dataz.number }}"><h1 class="display-6">
+                                c. {{ data.optC }}</h1>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="container">
+                        <p class="lead">
+
+                            <div class="custom-control custom-checkbox">
+                                <input class="form-check-input" id="ans4+{{ dataz.number }}" name="ans{{ dataz.number }}"
+                                       type="radio" value="{{ data.optD }}">
+                                <label class="form-check-label" for="ans4+{{ dataz.number }}"><h1 class="display-6">d.
+                                    {{ data.optD }}</h1>
+                                </label>
+                            </div>
+
+                    </div>
+                </div>
+                <input class="form-check-input" id="ans5+{{ dataz.number }}" name="ans{{ dataz.number }}"
+                                       type="radio" value="None" style="display:none;" checked>
+            </div>
+            <br>
+
+
+        </div>
+
+
+    </div>
+    <div align="center" class="paginator">
+        {% if dataz.has_previous %}
+        <a class="btn btn-success btn-lg" href="?page={{ dataz.previous_page_number }}" style="float: left;">Prev.</a>
+        {% endif %}
+        <div>
+            <button class="btn btn-success btn-lg" id="save_ans" style="float: right;">Submit</button>
+        </div>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!--        {% for num in dataz.paginator.page_range %}-->
+        <!--        {% if dataz.number == num %}-->
+        <!--        <strong>{{ num }}</strong>-->
+        <!--        {% else %}-->
+        <!--        {{ num }}-->
+        <!--        {% endif %}-->
+        <!--        {% endfor %}-->
+
+        {% if dataz.has_next %}
+        <a class="btn btn-primary btn-lg" href="?page={{ dataz.next_page_number }}" style="float: right; display:none;" id="next">Next</a>
+        {% else %}
+        <a class="btn btn-danger btn-lg" href="result" style="float: right; display:none;" id="next">Finish</a>
+        {% endif %}
+
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

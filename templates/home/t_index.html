@@ -1,0 +1,142 @@
+{% extends 'base_teacher.html' %}
+
+{% block title %} Automatic Question Generator {% endblock title %}
+
+{% block active %} active {% endblock active %}
+
+
+{% block body %}
+
+{% if request.user.groups.all.0.name == 'Teacher' %}
+<!-- if request.user.teacherdetail.role == 'Teacher'-->
+<!--Logged In User-->
+<div class="container my-3">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome <b>{{request.user}}</b> to </h1>
+        <h1 class="display-3"> Automated Questionnaire Generator </h1>
+        <h1 class="display-4">Using Expert System</h1>
+        <br>
+        {{request.user.first_name}} {{request.user.last_name}}<br>
+        {{request.user.email}}
+
+
+
+        <!--        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to-->
+        <!--            featured content or information.</p>-->
+
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <a class="btn btn-primary btn-lg" href="/teacher/dashboard" role="button">Go To Dashboard</a>
+    </div>
+
+    <section id="about-us">
+
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">About Us</h1>
+                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its
+                    parent.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-us">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Contact Us</h1>
+                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its
+                    parent.</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+{% elif request.user.groups.all.0.name == 'Student'%}
+<center>
+    <div class="container my-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Hello, Student!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention
+                to featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <br>
+            <img src="https://www.iconspng.com/uploads/sad-face-emoticon-yellow/sad-face-emoticon-yellow.png"
+                 width="50" height="50">
+            <br><br><br>
+            <a class="btn btn-primary btn-lg" href="/home" role="button">Go Back</a>
+        </div>
+
+    </div>
+</center>
+
+{% else %}
+
+<!--New User Homepage-->
+<div class="container my-3">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to </h1>
+        <h1 class="display-3"> Automated Questionnaire Generator </h1>
+        <h1 class="display-4">Using Expert System</h1>
+
+        <!--        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to-->
+        <!--            featured content or information.</p>-->
+
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <a class="btn btn-primary btn-lg" href="#about-us" role="button">Learn more</a>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Login</h1>
+                    <p class="lead">Already Have Account.</p>
+
+                    <!-- Button trigger Login modal -->
+                    <a class="btn btn-primary btn-lg" href="/teacher/login" role="button">Login</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Register</h1>
+                    <p class="lead">Create Account.</p>
+
+                    <!-- Button trigger SignUp modal -->
+                    <a class="btn btn-primary btn-lg" href="/teacher/register" role="button">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="about-us">
+
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">About Us</h1>
+                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its
+                    parent.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-us">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Contact Us</h1>
+                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its
+                    parent.</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+{% endif %}
+
+
+{% endblock body %}

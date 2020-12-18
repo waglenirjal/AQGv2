@@ -1,0 +1,39 @@
+{% extends 'dashboard/t_dashboard.html' %}
+
+{% block sub_body %}
+
+    <h1>
+        <center>Welcome to Teacher Dash</center>
+    </h1>
+    <hr>
+    <div class="container my-5">
+        <center>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Questions</h5>
+                        <hr>
+                        <p class="card-text">Add Questions into the Database.</p>
+                        <a class="btn btn-primary" href="selsub">Add Question</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Review My Questions</h5>
+                        <hr>
+                        <p class="card-text">Review the questions that I have stored in Database.</p>
+                        <a class="btn btn-primary" href="selsubReview">Review</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </center>
+    </div>
+
+
+
+
+{% endblock sub_body %}
